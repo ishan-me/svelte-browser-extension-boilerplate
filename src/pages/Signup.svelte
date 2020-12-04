@@ -1,8 +1,8 @@
 <script>
   import axios from "axios";
   import { push, link } from "svelte-spa-router";
-
   import { user } from "../stores/store";
+
   import Input from "../components/Input.svelte";
   import Button from "../components/Button.svelte";
   import { LOGIN_PAGE } from "../constants/routes";
@@ -12,9 +12,15 @@
   let password;
 
   async function signup() {
-    await axios.post("/api/auth/signup", { email, username, password });
-    $user = data.user;
-    push("/home");
+    try {
+      await axios.post("/api/auth/signup", { email, username, password });
+      $user = data.user;
+      push("/home");
+    } catch (e) {
+      username = "";
+      email = "";
+      password = "";
+    }
   }
 </script>
 
