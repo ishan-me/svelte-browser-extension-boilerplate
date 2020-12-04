@@ -1,8 +1,8 @@
 <script>
   import axios from "axios";
   import { push, link } from "svelte-spa-router";
-  import { user } from "../stores/store";
 
+  import { user } from "../stores/store";
   import Input from "../components/Input.svelte";
   import Button from "../components/Button.svelte";
   import { LOGIN_PAGE } from "../constants/routes";
