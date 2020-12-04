@@ -1,10 +1,10 @@
 <script>
   import axios from "axios";
-  import { user } from "../stores/store";
   import { push, link } from "svelte-spa-router";
 
-  import Button from "../components/Button.svelte";
+  import { user } from "../stores/store";
   import Input from "../components/Input.svelte";
+  import Button from "../components/Button.svelte";
   import { LOGIN_PAGE } from "../constants/routes";
 
   let email;
@@ -12,18 +12,9 @@
   let password;
 
   async function signup() {
-    try {
-      await axios.post("/api/auth/signup", { email, username, password });
-      $user = data.user;
-      push("/home");
-    } catch (e) {
-      if (e) {
-        console.log(e);
-        username = "";
-        email = "";
-        password = "";
-      }
-    }
+    await axios.post("/api/auth/signup", { email, username, password });
+    $user = data.user;
+    push("/home");
   }
 </script>
 
